@@ -1,21 +1,25 @@
-<div class="flex justify-center">
-  <%= form_with url: "/flights", method: :get do |f| %>
-    <div class="mb-3 xl:w-96">
-      <%= f.label 'Origin' %>
-      <%= f.select(:departure_airport_id, options_for_select(@origin_options))%>
-    </div>
-    <div class="mb-3 xl:w-96">
-      <%= f.label 'Destination' %>
-      <%= f.select(:arrival_airport_id, options_for_select(@destination_options))%> 
-    </div>
-    <div class="mb-3 xl:w-96">
-    <%= f.label 'Date' %>
-    <%= f.date_field(:takeoff, placeholder: "dd/mm/yyyy") %>
-    </div>
-    <div class="mb-3 xl:w-96">
-    <%= f.label 'Passengers' %>
-    <%= f.select :number_of_passengers, [1, 2, 3, 4] %>
-    </div>
-    <%= f.button "Find Flights" %>
-  <% end %>
+<div class="flex flex-row">
+  <div class="basis-1/3">
+    <%= form_with url: "/flights", method: :get do |f| %>
+      <div class="mb-3 xl:w-96">
+        <%= f.label 'Origin' %>
+        <%= f.select(:departure_airport_id, options_for_select(@origin_options))%>
+      </div>
+      <div class="mb-3 xl:w-96">
+        <%= f.label 'Destination' %>
+        <%= f.select(:arrival_airport_id, options_for_select(@destination_options))%> 
+      </div>
+      <div class="mb-3 xl:w-96">
+        <%= f.label 'Date' %>
+        <%= f.date_field(:takeoff, placeholder: "dd/mm/yyyy") %>
+      </div>
+      <div class="mb-3 xl:w-96">
+        <%= f.label 'Passengers' %>
+        <%= f.select :number_of_passengers, [1, 2, 3, 4] %>
+      </div>
+        <%= f.button "Find Flights" %>
+    <% end %>
+  </div>
+  <div class="basis-2/3">
+  </div>
 </div>
