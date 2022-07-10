@@ -3,19 +3,19 @@
     <%= form_with url: flights_path, method: :get do |f| %>
       <div class="mb-3 xl:w-96">
         <%= f.label 'Origin' %>
-        <%= f.select(:departure_id, options_for_select(@origin_options))%>
+        <%= f.select(:departure_id, options_for_select(@origin_options, params[:departure_id]))%>
       </div>
       <div class="mb-3 xl:w-96">
         <%= f.label 'Destination' %>
-        <%= f.select(:arrival_id, options_for_select(@destination_options))%> 
+        <%= f.select(:arrival_id, options_for_select(@destination_options, params[:arrival_id]))%> 
       </div>
       <div class="mb-3 xl:w-96">
         <%= f.label 'Date' %>
-        <%= f.date_field(:date, placeholder: "dd/mm/yyyy") %>
+        <%= f.date_field(:date, value: params[:date], placeholder: "dd/mm/yyyy") %>
       </div>
       <div class="mb-3 xl:w-96">
         <%= f.label 'Passengers' %>
-        <%= f.select :number_of_passengers, [1, 2, 3, 4] %>
+        <%= f.select(:number_of_passengers, options_for_select([1, 2, 3, 4], params[:number_of_passengers])) %>
       </div>
         <%= f.submit "Find Flights" %>
     <% end %>
