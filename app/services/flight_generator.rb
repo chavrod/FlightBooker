@@ -31,9 +31,9 @@ class FlightGenerator
 
   def flight_duration
     {
-      Diblin: { London: 60, Glasgow: 70 },
+      Dublin: { London: 60, Glasgow: 70 },
       London: { Dublin: 60, Glasgow: 80 },
-      Glasgow: { Diblin: 70, London: 80 }
+      Glasgow: { Dublin: 70, London: 80 }
     }
   end
 
