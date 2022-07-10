@@ -17,12 +17,14 @@ class FlightGenerator
     destination = Airport.find_by(name: airport_pair[1])
 
     flight_duration = find_flight_duration(airport_pair)
+    departure_date_string = @date.strftime('%Y-%m-%d')
 
     departure_times = [morning_time, afternoon_time, evening_time]
     departure_times.each do |departure_time|
       Flight.create(departure_airport: origin,
                     arrival_airport: destination,
                     takeoff: departure_time,
+                    departure_date: departure_date_string,
                     duration: flight_duration)
     end
   end
@@ -44,14 +46,14 @@ class FlightGenerator
   end
 
   def morning_time
-    Faker::Time.between_dates(from: Date.today, to: Date.today + 1, period: :morning)
+    Faker::Time.between_dates(from: @date, to: @date, period: :morning)
   end
 
   def afternoon_time
-    Faker::Time.between_dates(from: Date.today, to: Date.today + 1, period: :afternoon)
+    Faker::Time.between_dates(from: @date, to: @date, period: :afternoon)
   end
 
   def evening_time
-    Faker::Time.between_dates(from: Date.today, to: Date.today + 1, period: :evening)
+    Faker::Time.between_dates(from: @date, to: @date, period: :evening)
   end
 end

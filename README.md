@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+departure_date_string = @date.strftime('%Y-%m-%d')
+
+departure_date: departure_date_string,

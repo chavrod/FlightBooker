@@ -3,6 +3,8 @@
 
 Flight.destroy_all
 
+Flight.reset_pk_sequence
+
 Airport.find_or_create_by(name: 'Dublin')
 Airport.find_or_create_by(name: 'London')
 Airport.find_or_create_by(name: 'Glasgow')
@@ -14,3 +16,5 @@ finish = Time.zone.today + 10.days
   flight_generator = FlightGenerator.new(date)
   flight_generator.call
 end
+
+puts "Created #{Flight.count} flights"
