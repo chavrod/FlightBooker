@@ -23,6 +23,5 @@ Things you may want to cover:
 
 * ...
 
-departure_date_string = @date.strftime('%Y-%m-%d')
-
-departure_date: departure_date_string,
+    @available_flights = Flight.where("departure_airport_id = :departure_id AND arrival_airport_id = :arrival_id AND departure_date = :date",
+                                      {departure_id: params[:departure_id], arrival_id: params[:arrival_id], date: params[:date]})
