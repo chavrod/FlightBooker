@@ -20,11 +20,15 @@
         <%= f.submit "Find Flights" %>
     <% end %>
   </div>
-  <div class="basis-2/3">
-    <% @available_flights.each do |flight| %>
-      <%= flight.departure_airport.name %>
-      <%= flight.arrival_airport.name %>
-      <%= flight.takeoff %>
-    <% end %>
+  <div class="basis-2/3 flex justify-center">
+    <ul class="bg-white rounded-lg border border-gray-200 w-96 text-gray-900">
+      <% @available_flights.each do |flight| %>
+        <li class="px-6 py-2 border-b border-gray-200 w-full">
+          Departing from <%= flight.departure_airport.name %> to <%= flight.arrival_airport.name %> at <%= flight.takeoff %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
+
+
