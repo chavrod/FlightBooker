@@ -9,12 +9,16 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @flights = Flight.find(params[:booking][:flight_option])
     @booking = Booking.new(booking_params)
 
     if @booking.save
+      @passengers = @booking.passengers
+      create_tickets(@passengers, @flights)
       flash[:notice] = "New booking created"
       redirect_to @booking
     else
+      flash.now[:alert] = 'An error occured!'
       render :new
     end
   end
@@ -33,6 +37,8 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(passengers_attributes: %i[name email])
   end
 
-  def create_tickets
+  # will have to refactor code to allow for connecting fligths (use .map twice)
+  def create_tickets(passengers, flight)
+    passengers.map { |passenger| @booking.tickets.create(passenger: passenger, flight: flight) }
   end
 end

@@ -3,6 +3,10 @@
  <br>
 
 <%= form_with model: @booking do |form| %>
+
+  <%= form.hidden_field :flight_option, :value => params[:flight_option] %>
+  <%= form.hidden_field :number_of_passengers, :value => params[:number_of_passengers] %>
+
   Add passenger info:
   <ul>
     <%= form.fields_for :passengers do |passenger_form| %>
