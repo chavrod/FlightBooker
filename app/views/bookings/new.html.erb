@@ -1,2 +1,21 @@
-<%= @selected_flight.quick_flight_info %>
+<%= @selected_flight.quick_flight_info %><br>
+
+ <br>
+
+<%= form_with model: @booking do |form| %>
+  Add passenger info:
+  <ul>
+    <%= form.fields_for :passengers do |passenger_form| %>
+      <li>
+        <%= passenger_form.label :name %>
+        <%= passenger_form.text_field :name %>
+
+        <%= passenger_form.label :email %>
+        <%= passenger_form.email_field :email %>
+      </li>
+    <% end %>
+  </ul>
+  <%= form.submit "Finalise the Booking" %>
+<% end %>
+
 

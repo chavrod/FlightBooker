@@ -1,0 +1,14 @@
+<%= @booking.flights %>
+
+<%= @booking.passengers.all %>
+
+ <br>
+
+<ul>
+  <% @booking.passengers.each do |passenger| %>
+    <li>
+      <%= passenger.name %>
+      <%= passenger.email %>
+    </li>
+  <% end %>
+</ul>
