@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
 
-    @selected_flight = Flight.find(params[:flight_option])
+    @flights = Flight.find(params[:flight_option])
 
     passenger_count = params[:number_of_passengers].to_i
     passenger_count.times { @booking.passengers.build }
@@ -15,11 +15,11 @@ class BookingsController < ApplicationController
     if @booking.save
       @passengers = @booking.passengers
       create_tickets(@passengers, @flights)
-      flash[:notice] = "New booking created"
+      flash[:notice] = 'New booking created'
       redirect_to @booking
     else
       flash.now[:alert] = 'An error occured!'
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

@@ -1,33 +1,37 @@
-<%= @selected_flight.quick_flight_info %><br>
+<%= @flights.quick_flight_info %><br>
 
  <br>
 
 <%= form_with model: @booking do |form| %>
   <% if @booking.errors.any? %>
+    <%= form.hidden_field :flight_option, :value => params[:booking][:flight_option] %>
+    <%= form.hidden_field :number_of_passengers, :value => params[:booking][:number_of_passengers] %>
     <div>
       <p>
         <%= pluralize(@booking.errors.count, "error") %> prohibited this booking from saving:
       </p>
       <ul>
-        <% @booking.error.each do |error| %>
+        <% @booking.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
+  <% else %>
+    <%= form.hidden_field :flight_option, :value => params[:flight_option] %>
+    <%= form.hidden_field :number_of_passengers, :value => params[:number_of_passengers] %>
   <% end %>
-
-  <%= form.hidden_field :flight_option, :value => params[:flight_option] %>
-  <%= form.hidden_field :number_of_passengers, :value => params[:number_of_passengers] %>
 
   Add passenger info:
   <ul>
     <%= form.fields_for :passengers do |passenger_form| %>
       <li>
         <%= passenger_form.label :name %>
-        <%= passenger_form.text_field :name %>
+        <%= passenger_form.text_field :name,
+                                      required: true %>
 
         <%= passenger_form.label :email %>
-        <%= passenger_form.email_field :email %>
+        <%= passenger_form.email_field :email,
+                                       required: true %>
       </li>
     <% end %>
   </ul>

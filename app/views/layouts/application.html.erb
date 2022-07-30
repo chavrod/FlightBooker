@@ -12,6 +12,9 @@
   </head>
 
   <body>
+    <% if flash[:notice] || flash[:alert] %>
+      <%= render partial: 'layouts/flash' %>
+    <% end %>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
