@@ -3,6 +3,18 @@
  <br>
 
 <%= form_with model: @booking do |form| %>
+  <% if @booking.errors.any? %>
+    <div>
+      <p>
+        <%= pluralize(@booking.errors.count, "error") %> prohibited this booking from saving:
+      </p>
+      <ul>
+        <% @booking.error.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <%= form.hidden_field :flight_option, :value => params[:flight_option] %>
   <%= form.hidden_field :number_of_passengers, :value => params[:number_of_passengers] %>
